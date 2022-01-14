@@ -35,7 +35,6 @@ const GlobalStyle = createGlobalStyle`
 		line-height: 1;
 		font-family: 'Poppins', sans-serif;
 		background-color: #effafe;
-		padding: 0 110px;
 	}
 	ol, ul {
 		list-style: none;

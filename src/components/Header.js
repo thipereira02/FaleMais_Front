@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BiMenuAltRight } from 'react-icons/bi';
 
 import logo from '../assets/logo.png';
 
@@ -8,7 +7,6 @@ export default function Header() {
     return (
         <Content>
             <img src={logo} alt="logo" />
-            <BiMenuAltRight size="35px" color="#247b95"/>
         </Content>
     );
 }
