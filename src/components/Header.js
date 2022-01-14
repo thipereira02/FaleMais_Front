@@ -20,7 +20,7 @@ const Content = styled.div`
     top: 0;
     height: 70px;
     background-color: #FFF;
-    padding: 0 80px;
+    padding: 0 110px;
     display: flex;
     align-items: center;
     justify-content: space-between;

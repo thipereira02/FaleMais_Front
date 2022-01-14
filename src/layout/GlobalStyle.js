@@ -33,8 +33,9 @@ const GlobalStyle = createGlobalStyle`
 	}
 	body {
 		line-height: 1;
-		font-family: 'Roboto', sans-serif;
+		font-family: 'Poppins', sans-serif;
 		background-color: #effafe;
+		padding: 0 110px;
 	}
 	ol, ul {
 		list-style: none;
@@ -62,6 +63,9 @@ const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 		outline: none;
     }
+	button {
+		font-family: 'Poppins', sans-serif;
+	}
 `;
 
 export default GlobalStyle;
