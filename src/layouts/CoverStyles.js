@@ -6,9 +6,12 @@ export const Content = styled.div`
     justify-content: space-between;
 
     h1 {
-        font-size: 40px;
+        font-size: 50px;
         font-weight: 600;
-        color: #3597D4;
+        background-image: linear-gradient(to top, #3597D4, #90D5F2);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
     }
 `;
 
