@@ -6,7 +6,7 @@ import logo from '../assets/logo.png';
 export default function Header() {
     return (
         <Content>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" onClick={() => window.scrollTo(0, 0)}/>
         </Content>
     );
 }
@@ -25,5 +25,6 @@ const Content = styled.div`
 
     img{
         height: 45px;
+        cursor: pointer;
     }
 `;

@@ -61,6 +61,7 @@ const GlobalStyle = createGlobalStyle`
 	* {
 		box-sizing: border-box;
 		outline: none;
+		scroll-behavior: smooth;
     }
 	button {
 		font-family: 'Poppins', sans-serif;
