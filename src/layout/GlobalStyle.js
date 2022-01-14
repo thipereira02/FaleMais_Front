@@ -33,6 +33,8 @@ const GlobalStyle = createGlobalStyle`
 	}
 	body {
 		line-height: 1;
+		font-family: 'Roboto', sans-serif;
+		background-color: #effafe;
 	}
 	ol, ul {
 		list-style: none;
