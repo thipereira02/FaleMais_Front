@@ -23,7 +23,7 @@ export default function KnowMore() {
                 </div>
             </Box>
             <Button>
-                <button>
+                <button onClick={() => window.scrollTo(0, 1180)}>
                 Faça a simulação
                 </button>
             </Button>
