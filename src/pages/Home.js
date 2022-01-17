@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Cover from '../components/Cover';
 import Header from '../components/Header';
 import KnowMore from '../components/KnowMore';
 import Footer from '../components/Footer';
+import { getPlans } from '../services/server';
 
 export default function Home() {
     const [originCodes, setOriginCodes] = useState([]);
     const [destinationCodes, setDestinationCodes] = useState([]);
     const [minutes, setMinutes] = useState('');
     const [plans, setPlans] = useState([]);
+    const [selectedPlan, setSelectedPlan] = useState(null);
     const [showResume, setShowResume] = useState(false);
+
+    useEffect(() => {
+        getPlans().then(res => setPlans(res.data));
+    }, []);
 
     function simulate(e) {
         e.preventDefault();
@@ -55,7 +62,7 @@ export default function Home() {
                         onInput={e => e.target.setCustomValidity('')}
                         required
                     />
-                    <Select onChange={(e) => setPlans(e.target.value)} required>
+                    <Select onChange={(e) => setSelectedPlan(e.target.value)}>
                         <option value="0" disabled selected>Selecione o plano FaleMais</option>
                         {plans.map(p => (
                             <option value={p.id} key={p.id}>{p.name}</option>
