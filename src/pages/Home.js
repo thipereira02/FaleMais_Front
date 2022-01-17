@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Cover from '../components/Cover';
 import Header from '../components/Header';
 import KnowMore from '../components/KnowMore';
+import Footer from '../components/Footer';
 
 export default function Home() {
     const [originCodes, setOriginCodes] = useState([]);
@@ -11,12 +12,13 @@ export default function Home() {
     const [minutes, setMinutes] = useState('');
     const [plans, setPlans] = useState([]);
     const [showResume, setShowResume] = useState(false);
-    console.log(showResume);
 
     function simulate(e) {
         e.preventDefault();
 
         setShowResume(true);
+        window.scrollTo(0, 1300);
+
         setOriginCodes([]);
         setDestinationCodes([]);
         setMinutes('');
@@ -65,6 +67,16 @@ export default function Home() {
                 </form>
                 <Resume show={showResume}>
                     <table>
+                        <colgroup>
+                            <col />
+                            <col />
+                            <col />
+                            <col />
+                            <col />
+                            <col className="result"/>
+                            <col className="result"/>
+                            <col className="result"/>
+                        </colgroup>
                         <tr>
                             <th>Origem</th>
                             <th>Destino</th>
@@ -88,6 +100,7 @@ export default function Home() {
                     </table>
                 </Resume>
             </Content>
+            <Footer />
         </>
     );
 }
@@ -171,6 +184,11 @@ const Resume = styled.div`
     display: ${props => props.show ? 'flex' : 'none'};
     justify-content: center;
     margin-top: 50px;
+
+    .result{
+        background-color: #43B7BF;
+        font-weight: 600;
+    }
 
     table, th, td {
         color: #3B3B3B;
