@@ -6,30 +6,46 @@ import Cover from '../components/Cover';
 import Header from '../components/Header';
 import KnowMore from '../components/KnowMore';
 import Footer from '../components/Footer';
-import { getPlans } from '../services/server';
+import { getDestinationCodes, getOriginCodes, getPlans } from '../services/server';
 
 export default function Home() {
     const [originCodes, setOriginCodes] = useState([]);
+    const [selectedOriginCode, setSelectedOriginCode] = useState(null);
     const [destinationCodes, setDestinationCodes] = useState([]);
+    const [selectedDestinationCode, setSelectedDestinationCode] = useState(null);
     const [minutes, setMinutes] = useState('');
     const [plans, setPlans] = useState([]);
     const [selectedPlan, setSelectedPlan] = useState(null);
     const [showResume, setShowResume] = useState(false);
+    const [result, setResult] = useState([]);
 
     useEffect(() => {
         getPlans().then(res => setPlans(res.data));
+        getOriginCodes().then(res => setOriginCodes(res.data));
     }, []);
+
+    useEffect(() => {
+        setDestinationCodes(null);
+
+        if (selectedOriginCode !== null){
+            getDestinationCodes(selectedOriginCode).then(res => setDestinationCodes(res.data));
+        }
+    }, [selectedOriginCode]);
 
     function simulate(e) {
         e.preventDefault();
 
+        const body = {
+            originId: selectedOriginCode,
+            destinationId: selectedDestinationCode,
+            minutes,
+            plan: selectedPlan
+        };
+
+        makeSimulation(body).then(res => setResult(res.data));
+
         setShowResume(true);
         window.scrollTo(0, 1300);
-
-        setOriginCodes([]);
-        setDestinationCodes([]);
-        setMinutes('');
-        setPlans([]);
     }
 
     return (
@@ -40,18 +56,18 @@ export default function Home() {
             <Content>
                 <h1>Veja sua economia</h1>
                 <form onSubmit={simulate}>
-                    <Select onChange={(e) => setOriginCodes(e.target.value)} required>
+                    <Select onChange={(e) => setSelectedOriginCode(e.target.value)} required>
                         <option value="0" disabled selected>Código da cidade de origem</option>
                         {originCodes.map(o => (
-                            <option value={o.id} key={o.id}>{o.name}</option>
+                            <option value={o.id} key={o.id}>{o.code}</option>
                         ))}
                     </Select>
-                    <Select onChange={(e) => setDestinationCodes(e.target.value)} required>
+                    <Select onChange={(e) => setSelectedDestinationCode(e.target.value)} required>
                         <option value="0" disabled selected>Código da cidade de destino</option>
-                        {destinationCodes.map(d => (
-                            <option value={d.id} key={d.id}>{d.name}</option>
+                        {destinationCodes && destinationCodes.map(d => (
+                            <option value={d.id} key={d.id}>{d.code}</option>
                         ))}
-                    </Select>
+                    </Select>                   
                     <Input
                         type="number" 
                         placeholder="Tempo da ligação em minutos"
@@ -65,7 +81,7 @@ export default function Home() {
                     <Select onChange={(e) => setSelectedPlan(e.target.value)}>
                         <option value="0" disabled selected>Selecione o plano FaleMais</option>
                         {plans.map(p => (
-                            <option value={p.id} key={p.id}>{p.name}</option>
+                            <option value={p.name} key={p.id}>{p.name}</option>
                         ))}
                     </Select>
                     <Button type="submit">
@@ -160,6 +176,7 @@ const Input = styled.input`
     height: 43px;
     font-size: 20px;
     background-color: #FFF;
+    color: #807a7a;
 
     ::placeholder{
         font-size: 20px;
