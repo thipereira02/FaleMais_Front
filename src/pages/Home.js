@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 
-import { getDestinationCodes, getOriginCodes, getPlans } from '../services/server';
+import { getDestinationCodes, getOriginCodes, getPlans, getTariffs } from '../services/server';
 import Cover from '../components/Cover';
 import Header from '../components/Header';
 import KnowMore from '../components/KnowMore';
@@ -13,10 +13,12 @@ export default function Home() {
     const [selectedOriginCode, setSelectedOriginCode] = useState(null);
     const [destinationCodes, setDestinationCodes] = useState([]);
     const [plans, setPlans] = useState([]);
+    const [tariffs, setTariffs] = useState([]);
 
     useEffect(() => {
         getPlans().then(res => setPlans(res.data));
         getOriginCodes().then(res => setOriginCodes(res.data));
+        getTariffs().then(res => setTariffs(res.data));
     }, []);
 
     useEffect(() => {
@@ -38,6 +40,7 @@ export default function Home() {
                 selectedOriginCode={selectedOriginCode}
                 setSelectedOriginCode={setSelectedOriginCode}
                 plans={plans}
+                tariffs={tariffs}
             />
             <Footer />
         </>

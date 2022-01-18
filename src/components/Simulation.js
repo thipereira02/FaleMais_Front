@@ -5,7 +5,7 @@ import { Content, Select, Input, Button, Resume } from '../layouts/SimulationSty
 import { makeSimulation } from '../services/server';
 import Modal from './Modal';
 
-export default function Simulation({originCodes, destinationCodes, selectedOriginCode, setSelectedOriginCode, plans}) {
+export default function Simulation({originCodes, destinationCodes, selectedOriginCode, setSelectedOriginCode, plans, tariffs}) {
     const [selectedDestinationCode, setSelectedDestinationCode] = useState(null);
     const [selectedPlan, setSelectedPlan] = useState(null);
     const [minutes, setMinutes] = useState('');
@@ -101,7 +101,8 @@ export default function Simulation({originCodes, destinationCodes, selectedOrigi
             </p>
             <Modal 
                 modalOpen={modalOpen} 
-                setModalOpen={setModalOpen} 
+                setModalOpen={setModalOpen}
+                tariffs={tariffs} 
             />
         </Content>
     );

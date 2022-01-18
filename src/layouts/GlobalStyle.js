@@ -63,7 +63,7 @@ const GlobalStyle = createGlobalStyle`
 		outline: none;
 		scroll-behavior: smooth;
     }
-	button {
+	button, select, input {
 		font-family: 'Poppins', sans-serif;
 	}
 `;

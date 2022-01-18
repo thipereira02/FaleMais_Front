@@ -7,7 +7,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 Modal.setAppElement(document.querySelector('.root'));
 
-export default function ModalTariffs({modalOpen, setModalOpen}) {
+export default function ModalTariffs({modalOpen, setModalOpen, tariffs}) {
     return (
         <StyledModal
             style={customStyles}
@@ -15,54 +15,26 @@ export default function ModalTariffs({modalOpen, setModalOpen}) {
             onRequestClose={() => setModalOpen(!modalOpen)}
         >
             <Text>
-                    Tabela de tarifas
+                Tabela de tarifas
             </Text>
-            <Table>                   
+            <Table>
                 <tr>
                     <th>Origem</th>
                     <th>Destino</th>
                     <th>$/min <br/> SEM FaleMais</th>
                     <th>$/min <br/> COM FaleMais</th>
                 </tr>
-                <tr>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                </tr>
-                <tr>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                </tr>
-                <tr>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                </tr>
-                <tr>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                </tr>
-                <tr>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                </tr>
-                <tr>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                    <td>asdasd</td>
-                </tr>    
+                {tariffs && tariffs.map(t => (
+                    <tr key={t.id}>
+                        <td>{t.origin}</td>
+                        <td>{t.destination}</td>
+                        <td>{t.oldPrice}</td>
+                        <td>{t.newPrice}</td>
+                    </tr>
+                ))}  
             </Table>
             <p>
-                    *No plano FaleMais os minutos excedentes têm um acréscimo de 10% sobre a tarifa normal do minuto.
+                *No plano FaleMais os minutos excedentes têm um acréscimo de 10% sobre a tarifa normal do minuto.
             </p>
             <div>
                 <Close onClick={() => setModalOpen(!modalOpen)} />

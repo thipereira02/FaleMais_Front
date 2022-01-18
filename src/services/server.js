@@ -17,3 +17,7 @@ export function getDestinationCodes(code) {
 export function makeSimulation(body) {
     return axios.post(`${BASE_URL}/simulation`, body);
 }
+
+export function getTariffs() {
+    return axios.get(`${BASE_URL}/tariffs`);
+}

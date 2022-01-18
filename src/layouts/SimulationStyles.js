@@ -22,6 +22,8 @@ export const Content = styled.div`
         text-decoration: underline;
         color: #3B3B3B;
         cursor: pointer;
+        text-align: center;
+        margin-top: 20px;
 
         :hover {
             color: #808080;
@@ -32,7 +34,7 @@ export const Content = styled.div`
 export const Select = styled.select`
     height: 43px;
     background-color: #FFF;
-    width: 30%;
+    width: 35%;
     border-radius: 5px;
     border-color: #CCC;
     padding-left: 13px;
@@ -55,7 +57,7 @@ export const Input = styled.input`
     border: 1px solid #CCC;
     border-radius: 5px;
     margin-bottom: 15px;
-    width: 30%;
+    width: 35%;
     height: 43px;
     font-size: 20px;
     background-color: #FFF;
