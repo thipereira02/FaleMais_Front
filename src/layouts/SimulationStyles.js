@@ -16,6 +16,17 @@ export const Content = styled.div`
         flex-direction: column;
         align-items: center;
     }
+
+    p {
+        font-size: 15px;
+        text-decoration: underline;
+        color: #3B3B3B;
+        cursor: pointer;
+
+        :hover {
+            color: #808080;
+        }
+    }
 `;
 
 export const Select = styled.select`

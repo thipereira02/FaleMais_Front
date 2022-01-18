@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import { Content, Select, Input, Button, Resume } from '../layouts/SimulationStyles';
 import { makeSimulation } from '../services/server';
+import Modal from './Modal';
 
 export default function Simulation({originCodes, destinationCodes, selectedOriginCode, setSelectedOriginCode, plans}) {
     const [selectedDestinationCode, setSelectedDestinationCode] = useState(null);
@@ -10,6 +11,7 @@ export default function Simulation({originCodes, destinationCodes, selectedOrigi
     const [minutes, setMinutes] = useState('');
     const [showResume, setShowResume] = useState(false);
     const [result, setResult] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
 
     function simulate(e) {
         e.preventDefault();
@@ -94,6 +96,13 @@ export default function Simulation({originCodes, destinationCodes, selectedOrigi
                     </tr>
                 </table>
             </Resume>
+            <p onClick={() => setModalOpen(!modalOpen)}>
+                Ver tabela de tarifas
+            </p>
+            <Modal 
+                modalOpen={modalOpen} 
+                setModalOpen={setModalOpen} 
+            />
         </Content>
     );
 }
