@@ -13,3 +13,7 @@ export function getOriginCodes() {
 export function getDestinationCodes(code) {
     return axios.get(`${BASE_URL}/destinationCodes/${code}`);
 }
+
+export function makeSimulation(body) {
+    return axios.post(`${BASE_URL}/simulation`, body);
+}
